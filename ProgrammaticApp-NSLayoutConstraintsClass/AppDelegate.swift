@@ -12,10 +12,30 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    //reference to main view controller
+    let mainScreenController    : ViewController            = ViewController()
+    
+    //reference to navigation controller
+    let navigator               : UINavigationController    = UINavigationController()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //1. Create the window
+        self.window                                     = UIWindow(frame: UIScreen.main.bounds)
+        
+        //2. Embedded the view controller in the navigation controller
+        self.navigator.viewControllers.append(self.mainScreenController)
+        
+        //3. Customise the navigation controller
+        self.navigator.navigationBar.barStyle           = UIBarStyle.black
+        self.navigator.navigationBar.barTintColor       = UIColor.orange
+        self.navigator.navigationBar.prefersLargeTitles = true
+        
+        //4. Set the root view controller
+        self.window?.rootViewController                 = self.navigator
+        
+        //5. Make the window key and visible
+        self.window?.makeKeyAndVisible()
         return true
     }
 
